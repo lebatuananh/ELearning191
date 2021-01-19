@@ -1,0 +1,76 @@
+﻿@using PeaLearning.Common;
+@model IEnumerable<CourseDto>
+<!-- Hero Start -->
+<section class="bg-half bg-green d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title text-white"> Khóa học </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Khóa học</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>  <!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section><!--end section-->
+<!-- Hero End -->
+<!-- Blog Start -->
+<!-- Courses Start -->
+<section class="section" id="courses">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                string link = item.Link;
+                @if (item.IsPrice)
+                {
+                    link = item.LinkBuy;
+                }
+                <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                    <div class="card courses-desc overflow-hidden rounded shadow border-0">
+                        <div class="position-relative d-block overflow-hidden">
+                            <img src="@(string.Format("{0}{1}", StaticVariable.DomainImage, item.Thumbnail))" class="img-fluid rounded-top mx-auto" alt="">
+                            <div class="overlay-work"></div>
+                            <a href="@link" class="text-white h6 preview">Xem ngay <i class="mdi mdi-chevron-right"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <h5><a href="@link" class="title text-dark">@item.Title</a></h5>
+                            <div class="fees d-flex justify-content-between">
+                                <ul class="list-unstyled mb-0 numbers">
+                                    <li><i class="mdi mdi-school text-muted"></i> 0 Students</li>
+                                    <li><i class="mdi mdi-book text-muted"></i> 15 Lession</li>
+                                </ul>
+                                @if (item.IsPrice)
+                                {
+                                    <h4>@string.Format("{0:0,0} vnđ", item.Price)</h4>
+                                }
+
+                            </div>
+                            @if (item.IsPrice)
+                            {
+                                <div class="mt-4">
+                                    <a href="@item.LinkBuy" class="btn btn-primary">Buy Now</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mt-4">
+                                    <a href="@item.Link" class="btn btn-primary">Preview </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div><!--end col-->
+            }
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+<!-- Courses End -->
+<!-- Blog End -->

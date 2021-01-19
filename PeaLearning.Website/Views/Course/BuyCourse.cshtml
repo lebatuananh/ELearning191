@@ -1,0 +1,166 @@
+﻿@using PeaLearning.Common;
+@model CourseDto
+    <!-- Hero Start -->
+<section class="section pt-5 pb-0 mt-4">
+    <div class="container-fluid mt-md-1 px-0 px-md-3">
+        <div class="rounded bg-light py-5 px-3 px-sm-0">
+            <div class="row">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <div class="title-heading mr-lg-4">
+                                <div class="alert alert-primary alert-pills shadow" role="alert">
+                                    <span class="content"> Are you ready to learn online ?</span>
+                                </div>
+
+                                <h1 class="heading mb-3">@Model.Title</h1>
+                                <p class="para-desc text-muted">@Model.Description</p>
+                                <div class="subcribe-form mt-4 pt-2">
+                                    <h4>@string.Format("{0:0,0} vnđ", Model.Price)</h4>
+                                    <div class="mt-4">
+                                        <a target="_blank" href="@(string.Format("/checkout/{0}",Model.Id))" class="btn btn-primary">Buy Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end col-->
+
+                        <div class="col-lg-5 col-md-6 col-12 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                            <div class="position-relative">
+                                <img src="@(string.Format("{0}{1}", StaticVariable.DomainImage, Model.Thumbnail))" class="rounded img-fluid mx-auto d-block" alt="">
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end container-->
+            </div><!--end row-->
+        </div><!--end div-->
+    </div><!--end container fluid-->
+</section><!--end section-->
+<!-- Hero End -->
+<!-- Course list Start -->
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="section-title text-center mb-4 pb-2">
+                    <h4 class="title mb-4">Anh ngữ PEA mang đến cho bạn những giá trị gì?</h4>
+                    <p class="text-muted para-desc mb-0 mx-auto">Mời các bậc phụ huynh cùng tìm hiểu các giá trị đích thực mà tập thể đội ngũ Giáo viên và Cán bộ của Anh Ngữ PEA muốn mang đến cho các con.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+                <div class="card explore-feature border-0 rounded text-center bg-white">
+                    <div class="card-body py-5">
+                        <div class="image position-relative d-inline-block">
+                            <img src="~/Images/web/20200905/1.png" class="avatar" height="150">
+                        </div>
+                        <div class="content mt-3">
+                            <h5><a href="javascript:void(0)" class="title text-dark">MÔ HÌNH ĐÀO TẠO HUẤN LUYỆN NGÔN NGỮ</a></h5>
+                            <a href="javascript:void(0)" class="text-muted small">Coaching, blended learning kết hợp học online và offline - tiết kiệm chi phí - tối ưu hiệu quả</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+                <div class="card explore-feature border-0 rounded text-center bg-white">
+                    <div class="card-body py-5">
+                        <div class="image position-relative d-inline-block">
+                            <img src="~/Images/web/20200905/2.png" class="avatar" height="150">
+                        </div>
+                        <div class="content mt-3">
+                            <h5><a href="javascript:void(0)" class="title text-dark">LỘ TRÌNH THÔNG MINH</a></h5>
+                            <a href="javascript:void(0)" class="text-muted small">Giúp trẻ phát triển tối đa năng lực </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+                <div class="card explore-feature border-0 rounded text-center bg-white">
+                    <div class="card-body py-5">
+                        <div class="image position-relative d-inline-block">
+                            <img src="~/Images/web/20200905/3.png" class="avatar" height="150">
+                        </div>
+                        <div class="content mt-3">
+                            <h5><a href="javascript:void(0)" class="title text-dark">GIÁO TRÌNH TÍCH HỢP</a></h5>
+                            <a href="javascript:void(0)" class="text-muted small">Toàn bộ các bài học đều được công nghệ hoá dưới dạng tương tác giúp trẻ có thể chủ động luyện tập 24/7</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+                <div class="card explore-feature border-0 rounded text-center bg-white">
+                    <div class="card-body py-5">
+                        <div class="image position-relative d-inline-block">
+                            <img src="~/Images/web/20200905/4.png" class="avatar" height="150">
+                        </div>
+                        <div class="content mt-3">
+                            <h5><a href="javascript:void(0)" class="title text-dark">GIÁO VIÊN CHUYÊN NGHIỆP </a></h5>
+                            <a href="javascript:void(0)" class="text-muted small">Có trình độ thạc sĩ chuyên ngành giáo dục, giảng viên các trường ĐH hàng đầu Việt Nam</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+                <div class="card explore-feature border-0 rounded text-center bg-white">
+                    <div class="card-body py-5">
+                        <div class="image position-relative d-inline-block">
+                            <img src="~/Images/web/20200905/5.png" class="avatar" height="150">
+                        </div>
+                        <div class="content mt-3">
+                            <h5><a href="javascript:void(0)" class="title text-dark">PHƯƠNG PHÁP ĐÀO TẠO TOP</a></h5>
+                            <a href="javascript:void(0)" class="text-muted small">TPR, Online Blended, P3</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+                <div class="card explore-feature border-0 rounded text-center bg-white">
+                    <div class="card-body py-5">
+                        <div class="image position-relative d-inline-block">
+                            <img src="~/Images/web/20200905/6.png" class="avatar" height="150">
+                        </div>
+                        <div class="content mt-3">
+                            <h5><a href="javascript:void(0)" class="title text-dark">KỸ NĂNG CÔNG DÂN TOÀN CẤU </a></h5>
+                            <a href="javascript:void(0)" class="text-muted small">Hệ thống khóa học kỹ năng mềm thế kỷ 21 độc quyền</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+                <div class="card explore-feature border-0 rounded text-center bg-white">
+                    <div class="card-body py-5">
+                        <div class="image position-relative d-inline-block">
+                            <img src="~/Images/web/20200905/7.png" class="avatar" height="150">
+                        </div>
+                        <div class="content mt-3">
+                            <h5><a href="javascript:void(0)" class="title text-dark">BẰNG QUỐC TẾ CAMBRIDGE </a></h5>
+                            <a href="javascript:void(0)" class="text-muted small">Đảm bảo đầu ra theo lộ trinh từ Starters, Movers, Flyers, KET, PET, FCE, IELTS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+                <div class="card explore-feature border-0 rounded text-center bg-white">
+                    <div class="card-body py-5">
+                        <div class="image position-relative d-inline-block">
+                            <img src="~/Images/web/20200905/8.png" class="avatar" height="150">
+                        </div>
+                        <div class="content mt-3">
+                            <h5><a href="javascript:void(0)" class="title text-dark">KẾT NỐI GIA ĐÌNH VÀ NHÀ TRƯỜNG</a></h5>
+                            <a href="javascript:void(0)" class="text-muted small">Các hội thảo về nuôi dạy con, hướng nghiệp, tâm lý học đường giúp ba mẹ làm bạn cùng con.</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Course list End -->

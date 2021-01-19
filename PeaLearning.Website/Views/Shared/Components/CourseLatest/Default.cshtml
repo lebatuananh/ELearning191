@@ -1,0 +1,46 @@
+﻿@model IList<CourseDto>
+@if (Model != null && Model.Any())
+{
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="section-title text-center mb-4 pb-2">
+                    <h4 class="title mb-4">Popular Courses</h4>
+                    <p class="text-muted para-desc mb-0 mx-auto">Start working with <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate awareness, drive traffic, connect.</p>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                    <div class="card blog rounded border-0 shadow overflow-hidden">
+                        <div class="position-relative">
+                            <img src="@item.Thumbnail" class="card-img-top" alt="@item.Title">
+                            <div class="overlay bg-dark"></div>
+                        </div>
+                        <div class="card-body content">
+                            <small><a href="javascript:void(0)" class="text-primary h6">Design</a></small>
+                            <h5 class="mt-2">
+                                <a href="javascript:void(0)" class="title text-dark">@item.Title</a>
+                            </h5>
+                            <p class="text-muted">@item.Description</p>
+                            <a href="@item.Link" class="text-primary">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a>
+                            <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                                <li class="text-muted small"><i data-feather="book" class="fea icon-sm text-info"></i> 25 Lectures</li>
+                                <li class="text-muted small ml-3"><i data-feather="clock" class="fea icon-sm text-warning"></i> 1h 30m</li>
+                                <li class="text-muted small ml-3"><i data-feather="eye" class="fea icon-sm text-primary"></i> 3012</li>
+                            </ul>
+                        </div>
+                    </div> <!--end card / course-blog-->
+                </div><!--end col-->
+            }
+        </div><!--end row-->
+    </div><!--end container-->
+
+
+
+}
+
+

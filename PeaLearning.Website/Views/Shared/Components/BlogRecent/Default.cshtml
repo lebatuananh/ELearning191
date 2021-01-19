@@ -1,0 +1,32 @@
+﻿@model IList<BlogDto>
+
+@if (Model != null && Model.Any())
+{
+    <div class="col-lg-4 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="card border-0 sidebar sticky-bar rounded shadow">
+            <div class="card-body">
+                <!-- RECENT POST -->
+                <div class="widget mb-4 pb-2">
+                    <h4 class="widget-title">Recent Post</h4>
+                    <div class="mt-4">
+                        @foreach (var item in Model)
+                        {
+                            <div class="clearfix post-recent">
+                                <div class="post-recent-thumb float-left">
+                                    <a href="@item.Link">
+                                        <img alt="@item.Name" src="@item.AvatarUrl" class="img-fluid rounded">
+                                    </a>
+                                </div>
+                                <div class="post-recent-content float-left">
+                                    <a href="@item.Link">@item.Name</a>
+                                    <span class="text-muted mt-2">@item.CreatedDate.ToString("dd/MM/yyyy")</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- RECENT POST -->
+            </div>
+        </div>
+    </div><!--end col-->
+}

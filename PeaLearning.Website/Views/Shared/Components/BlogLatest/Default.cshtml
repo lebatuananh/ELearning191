@@ -1,0 +1,38 @@
+﻿@model IList<BlogDto>
+
+@if (Model != null && Model.Any())
+{
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title mb-4 pb-2">
+                    <h4 class="title mb-4">Latest News</h4>
+                    <p class="text-muted para-desc mx-auto mb-0">Start working with <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate awareness, drive traffic, connect.</p>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="card blog rounded border-0 shadow">
+                        <div class="position-relative">
+                            <img src="@item.AvatarUrl" class="card-img-top rounded-top" alt="@item.Name">
+                            <div class="overlay rounded-top bg-dark"></div>
+                        </div>
+                        <div class="card-body content">
+                            <h5><a href="@item.Link" class="card-title title text-dark">@item.Name</a></h5>
+                            <div class="post-meta d-flex justify-content-between mt-3">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="list-inline-item mr-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i class="mdi mdi-heart-outline mr-1"></i>@item.ViewCount</a></li>
+                                </ul>
+                                <a href="@item.Link" class="text-muted readmore">Read More <i class="mdi mdi-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end col-->
+            }
+        </div><!--end row-->
+    </div><!--end container-->
+}

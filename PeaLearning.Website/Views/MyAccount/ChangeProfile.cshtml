@@ -1,0 +1,79 @@
+﻿@using PeaLearning.Website.Models.MyAccount;
+@model UserProfileModel
+<!-- Hero Start -->
+@await Component.InvokeAsync("ProfileHeader")
+<!-- Hero End -->
+<!-- Profile Start -->
+<section class="section mt-60">
+    <div class="container mt-lg-3">
+        <div class="row">
+            @await Component.InvokeAsync("ProfileStatistic")
+
+            <div class="col-lg-8 col-12">
+                <div class="card border-0 rounded shadow">
+                    <div class="card-body">
+                        <h5 class="text-md-left text-center">Thông tin cá nhân</h5>
+                        <form asp-controller="MyAccount" asp-action="UpdateProfile" method="post">
+                            <input type="hidden" asp-for="Id" />
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>
+                                            Tên
+                                        </label>
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" asp-for="FirstName" class="form-control pl-5" placeholder="Tên" />
+                                        <span class="error" asp-validation-for="FirstName"></span>
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>Họ</label>
+                                        <i data-feather="user-check" class="fea icon-sm icons"></i>
+                                        <input type="text" asp-for="LastName" class="form-control pl-5" placeholder="Họ" />
+                                        <span class="error" asp-validation-for="LastName"></span>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>Email</label>
+                                        <i data-feather="mail" class="fea icon-sm icons"></i>
+                                        <input type="text" readonly="readonly" asp-for="Email" class="form-control pl-5" placeholder="Email" />
+                                        <span class="error" asp-validation-for="Email"></span>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>Số điện thoại</label>
+                                        <i data-feather="phone" class="fea icon-sm icons"></i>
+                                        <input type="text" readonly="readonly"  asp-for="PhoneNumber" class="form-control pl-5" placeholder="Số điện thoại" />
+                                        <span class="error" asp-validation-for="PhoneNumber"></span>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-12">
+                                    <div class="form-group position-relative">
+                                        <label>Địa chỉ</label>
+                                        <i data-feather="map" class="fea icon-sm icons"></i>
+                                        <input type="text" asp-for="Address" class="form-control pl-5" placeholder="Địa chỉ" />
+                                        <span class="error" asp-validation-for="Address"></span>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="lblMessage" class="error"></div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <button id="btnChangeProfile" type="submit" class="btn btn-primary">Submit</button>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </form><!--end form-->
+                    </div>
+                </div>
+            </div><!--end col-->
+
+        </div>
+    </div>
+</section>
+<!-- Profile End -->

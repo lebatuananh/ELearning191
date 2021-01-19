@@ -1,0 +1,150 @@
+﻿@using PeaLearning.Website.Models.Account;
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Html.Raw(ViewBag.TitlePage)</title>
+    @Html.Raw(ViewBag.MetaDescription)
+    @Html.Raw(ViewBag.MetaFacebook)
+    @Html.Raw(ViewBag.MetaCanonical)
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/Images/web/20200905/logo-pea.png">
+    <!-- Bootstrap -->
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link href="~/Css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.7/css/unicons.css">
+    <!-- Main Css -->
+    <link href="~/Css/style.css" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="~/Css/colors/default.css" rel="stylesheet" id="color-opt">
+
+</head>
+
+<body>
+    <div class="back-to-home rounded d-none d-sm-block">
+        <a href="/" class="btn btn-icon btn-soft-primary active"><i data-feather="home" class="icons"></i></a>
+    </div>
+    <!-- Hero Start -->
+    <section class="cover-user bg-white">
+        <div class="container-fluid px-0">
+            <div class="row no-gutters position-relative">
+                <div class="col-lg-4 cover-my-30 order-2">
+                    <div class="cover-user-img d-flex align-items-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card login_page border-0" style="z-index: 1">
+                                    <div class="card-body p-0">
+                                        <h4 class="card-title text-center">Đăng ký</h4>
+                                        <form asp-controller="Account" asp-action="Register" class="login-form mt-4" method="post">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group position-relative">
+                                                        <label>Tên <span class="text-danger">*</span></label>
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input type="text" asp-for="FirstName" class="form-control pl-5" placeholder="Tên" />
+                                                        <span class="error" asp-validation-for="FirstName"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group position-relative">
+                                                        <label>Họ <span class="text-danger">*</span></label>
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input type="text" asp-for="LastName" class="form-control pl-5" placeholder="Họ" />
+                                                        <span class="error" asp-validation-for="LastName"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group position-relative">
+                                                        <label>Email <span class="text-danger">*</span></label>
+                                                        <i data-feather="mail" class="fea icon-sm icons"></i>
+                                                        <input type="text" asp-for="Email" class="form-control pl-5" placeholder="Email" />
+                                                        <span class="error" asp-validation-for="Email"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group position-relative">
+                                                        <label>Số điện thoại <span class="text-danger">*</span></label>
+                                                        <i data-feather="phone" class="fea icon-sm icons"></i>
+                                                        <input type="text" asp-for="PhoneNumber" class="form-control pl-5" placeholder="Phone" />
+                                                        <span class="error" asp-validation-for="PhoneNumber"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group position-relative">
+                                                        <label>Địa chỉ <span class="text-danger">*</span></label>
+                                                        <i data-feather="map-pin" class="fea icon-sm icons"></i>
+                                                        <input type="text" asp-for="Address" class="form-control pl-5" placeholder="Địa chỉ" />
+                                                        <span class="error" asp-validation-for="Address"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group position-relative">
+                                                        <label>Mật khẩu <span class="text-danger">*</span></label>
+                                                        <i data-feather="key" class="fea icon-sm icons"></i>
+                                                        <input id="password_login" asp-for="Password" placeholder="Mật khẩu" type="password" class="form-control pl-5">
+                                                        <span class="error" asp-validation-for="Password"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group position-relative">
+                                                        <label>Nhập lại mật khẩu <span class="text-danger">*</span></label>
+                                                        <i data-feather="key" class="fea icon-sm icons"></i>
+                                                        <input asp-for="ConfirmPassword" placeholder="Nhập lại mật khẩu" type="password" class="form-control pl-5">
+                                                        <span class="error" asp-validation-for="ConfirmPassword"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div id="lblMessage" class="error"></div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                                                </div>
+                                                <div class="mx-auto">
+                                                    <p class="mb-0 mt-3">
+                                                        <small class="text-dark mr-2">Bạn đã có tài khoản?</small> <a href="/dang-nhap" class="text-dark font-weight-bold">Đăng nhập</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                    </div> <!-- end about detail -->
+                </div> <!-- end col -->
+
+                <div class="col-lg-8 offset-lg-4 padding-less img order-1" style="background-image: url('/Images/web/back-to-school-physicals.jpg')" ></div><!-- end col -->
+            </div><!--end row-->
+        </div><!--end container fluid-->
+    </section><!--end section-->
+    <!-- Hero End -->
+    <!-- javascript -->
+    <script src="~/Scripts/Lib/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/Lib/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Lib/jquery.easing.min.js"></script>
+    <script src="~/Scripts/Lib/scrollspy.min.js"></script>
+    <!-- Icons -->
+    <script src="~/Scripts/Lib/feather.min.js"></script>
+    <script src="https://unicons.iconscout.com/release/v2.1.9/script/monochrome/bundle.js"></script>
+    <!-- Main Js -->
+    <script src="~/Scripts/Lib/app.js"></script>
+    <script src="~/Scripts/Lib/jquery.validate.min.js"></script>
+    <script src="~/Scripts/Lib/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/initpage.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <style>
+        .error {
+            display: block;
+        }
+    </style>
+</body>
+</html>

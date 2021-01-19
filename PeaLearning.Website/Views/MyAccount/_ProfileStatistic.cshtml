@@ -1,0 +1,88 @@
+﻿@model PeaLearning.Website.Models.MyAccount.UserStatisticModel
+
+<div class="col-lg-4 col-md-6 col-12 d-lg-block d-none">
+    <div class="sidebar sticky-bar p-4 rounded shadow">
+        <div class="widget">
+            <h5 class="widget-title">Điểm của tôi :</h5>
+            <div class="row mt-4">
+                <div class="col-6 text-center">
+                    <i data-feather="user-plus" class="fea icon-ex-md text-primary mb-1"></i>
+                    <h5 class="mb-0">@Model.Score</h5>
+                    <p class="text-muted mb-0">điểm</p>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div>
+
+        <div class="widget mt-4 pt-2">
+            <h5 class="widget-title">Khóa học :</h5>
+            <div class="progress-box mt-4">
+                <h6 class="title text-muted">Progress</h6>
+                <div class="progress">
+                    <div class="progress-bar position-relative bg-primary" style="width:50%;">
+                        <div class="progress-value d-block text-muted h6">50 / 100</div>
+                    </div>
+                </div>
+            </div><!--end process box-->
+        </div>
+
+        <div class="widget">
+            <div class="row">
+                <div class="col-6 mt-4 pt-2">
+                    <a href="/profile" class="accounts active rounded d-block shadow text-center py-3">
+                        <span class="pro-icons h3 text-muted"><i class="uil uil-dashboard"></i></span>
+                        <h6 class="title text-dark h6 my-0">Profile</h6>
+                    </a>
+                </div><!--end col-->
+                <div class="col-6 mt-4 pt-2">
+                    <a href="/change-profile" class="accounts rounded d-block shadow text-center py-3">
+                        <span class="pro-icons h3 text-muted"><i class="uil uil-users-alt"></i></span>
+                        <h6 class="title text-dark h6 my-0">Members</h6>
+                    </a>
+                </div><!--end col-->
+                <div class="col-6 mt-4 pt-2">
+                    <a href="/dang-xuat" class="accounts rounded d-block shadow text-center py-3">
+                        <span class="pro-icons h3 text-muted"><i class="uil uil-sign-out-alt"></i></span>
+                        <h6 class="title text-dark h6 my-0">Logout</h6>
+                    </a>
+                </div>
+                @*
+
+                    <div class="col-6 mt-4 pt-2">
+                        <a href="account-works.html" class="accounts rounded d-block shadow text-center py-3">
+                            <span class="pro-icons h3 text-muted"><i class="uil uil-file"></i></span>
+                            <h6 class="title text-dark h6 my-0">Works</h6>
+                        </a>
+                    </div>
+
+                    <div class="col-6 mt-4 pt-2">
+                        <a href="account-messages.html" class="accounts rounded d-block shadow text-center py-3">
+                            <span class="pro-icons h3 text-muted"><i class="uil uil-envelope-star"></i></span>
+                            <h6 class="title text-dark h6 my-0">Messages</h6>
+                        </a>
+                    </div>
+
+                    <div class="col-6 mt-4 pt-2">
+                        <a href="account-payments.html" class="accounts rounded d-block shadow text-center py-3">
+                            <span class="pro-icons h3 text-muted"><i class="uil uil-transaction"></i></span>
+                            <h6 class="title text-dark h6 my-0">Payments</h6>
+                        </a>
+                    </div>
+
+                    <div class="col-6 mt-4 pt-2">
+                        <a href="account-setting.html" class="accounts rounded d-block shadow text-center py-3">
+                            <span class="pro-icons h3 text-muted"><i class="uil uil-setting"></i></span>
+                            <h6 class="title text-dark h6 my-0">Settings</h6>
+                        </a>
+                    </div>
+
+                    <div class="col-6 mt-4 pt-2">
+                        <a href="auth-login-three.html" class="accounts rounded d-block shadow text-center py-3">
+                            <span class="pro-icons h3 text-muted"><i class="uil uil-sign-out-alt"></i></span>
+                            <h6 class="title text-dark h6 my-0">Logout</h6>
+                        </a>
+                    </div>*@
+            </div><!--end row-->
+        </div>
+
+    </div>
+</div>

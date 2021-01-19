@@ -1,0 +1,138 @@
+﻿@model LessonDto
+<!-- Hero Start -->
+<section class="bg-half bg-dark d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title text-white"> @Model.Title </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                                <li class="breadcrumb-item " aria-current="page"><a href="/khoa-hoc">Khóa học</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@(Model.LessonType == LessonType.Audit ? "Kiểm tra" : "Ôn luyện")</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>  <!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section><!--end section-->
+<!-- Courses Start -->
+<input type="hidden" id="hddLessonId" value="@Model.Id" />
+<input type="hidden" id="hddCourseId" value="@Model.CourseId" />
+<input type="hidden" id="hddLessonType" value="@Model.LessonType" />
+<input type="hidden" id="hddDuration" value="@DateTimeOffset.UtcNow.AddHours(7).AddMinutes(Model.Duration).ToString("yyyy/MM/dd HH:mm:ss")" />
+<section class="mt-100">
+    <div class="container">
+        <div class="row justify-content-center mb-3">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-hourglass-start text-primary"></i>
+                <div id="exam-count-down" class="ml-1 text-primary"></div>
+            </div>
+        </div>
+        <div class="row" id="loadQuestion">
+            @{
+                int i = 0;
+                foreach (var item in Model.Questions)
+                {
+                    i++;
+                    <div class="col-lg-12 @(i > 1 ? "hide":"")" id="stt-@i">
+                        <div class="card event-schedule rounded border">
+                            <div class="card-body">
+                                <div class="media">
+                                    <ul class="date text-center text-primary mr-3 mb-0 list-unstyled">
+                                        <li class="day font-weight-bold mb-2">@i</li>
+                                    </ul>
+                                    <div class="d-flex justify-content-between w-100">
+                                        <div class="media-body content">
+                                            @if (!string.IsNullOrEmpty(item.ParentContent))
+                                            {
+                                                @Html.Raw(item.ParentContent)
+                                            }
+                                            @if (!string.IsNullOrEmpty(item.ParentExample))
+                                            {
+                                                <p style="font-style:italic;">Example: @Html.Raw(item.ParentExample)</p>
+                                            }
+                                            @if (!string.IsNullOrEmpty(item.PictureUrl))
+                                            {
+                                                <div class="position-relative">
+                                                    <img src="@item.PictureUrl.GetUrl()" height="300" />
+                                                </div>
+                                            }
+                                            @if (!string.IsNullOrEmpty(item.AudioUrl))
+                                            {
+                                                <div class="position-relative mt-2">
+                                                    <audio controls>
+                                                        <source src="@item.AudioUrl.GetUrl()" type="audio/mpeg" />
+                                                    </audio>
+                                                </div>
+                                            }
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body content answer" data-type="@((int)item.QuestionContent.QuestionType)">
+                                                        @Html.Raw(item.ConvertContent())
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @if (i < Model.Questions.Count)
+                                            {
+                                                <a href="javascript:void(0)" data-stt="@i" onclick="question.nextQuestion(this)" style="float:right;" class="btn btn-sm btn-outline-primary mouse-down rightMost">Next</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="javascript:void(0)" onclick="question.confirm()" style="float:right;" class="btn btn-outline-primary mouse-down rightMost">Nộp bài</a>
+                                            }
+                                        </div>
+                                        <p class="text-primary font-weight-bold">@item.Score points</p>
+                                    </div>                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="row">
+            <div class="col-12 mt-4 pt-2" style="margin-bottom:60px;">
+                <ul class="pagination justify-content-center mb-0">
+                    @{ int j = 0;}
+                    @foreach (var items in Model.Questions.Where(x => x.QuestionContent.QuestionType != PeaLearning.Common.Models.QuestionType.Section))
+                    {
+                        j++;
+                        <li class="@(j == 1 ? "page-item active": "page-item" )"><a onclick="question.chooseQuestion(this)" data-id="@j" class="page-link" href="javascript:void(0)">@j</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content rounded shadow border-0">
+            <div class="modal-header">
+                <h5 class="modal-title">Xác nhận </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted mb-0">
+                    Bạn có chắc chắc muốn nộp bài? Sau khi nộp, bạn sẽ không thể thay đổi câu trả lời.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
+                <button type="button" onclick="question.submit()" class="btn btn-primary">Nộp bài</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/Lib/jquery.countdown.min.js"></script>
+    <script asp-append-version="true" src="~/Scripts/question.js"></script>
+}

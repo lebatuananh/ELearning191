@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>@Html.Raw(ViewBag.TitlePage)</title>
+    @Html.Raw(ViewBag.MetaDescription)
+    @Html.Raw(ViewBag.MetaFacebook)
+    @Html.Raw(ViewBag.MetaCanonical)
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/Images/web/20200905/logo-pea.png">
+    <!-- Bootstrap -->
+    <link href="/Css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link href="/Css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.7/css/unicons.css">
+    <!-- Magnific -->
+    <link href="/Css/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <!-- Slider -->
+    <link rel="stylesheet" href="/Css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/Css/owl.theme.default.min.css" />
+    <!-- FLEXSLIDER -->
+    <link href="/Css/flexslider.css" rel="stylesheet" type="text/css" />
+    <!-- Main Css -->
+    <link asp-append-version="true" href="/Css/style.css" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="/Css/colors/default.css" rel="stylesheet" id="color-opt">
+    <link href="/Css/fix.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" />
+    @RenderSection("styles", required: false)
+</head>
+
+<body>
+    <!-- Navbar STart -->
+
+    @await Html.PartialAsync("~/Views/Partial/_Header.cshtml")
+
+    <partial></partial>
+    <!-- Navbar End -->
+    <div id="wrapper">
+        @RenderBody()
+    </div>
+
+    <!-- Footer Start -->
+    @await Html.PartialAsync("~/Views/Partial/_Footer.cshtml")
+    <!-- Footer End -->
+
+    <div id="loading"></div>
+    <div id="popup"></div>
+    <!-- Back to top -->
+    <a href="#" class="btn btn-icon btn-soft-primary back-to-top"><i data-feather="arrow-up" class="icons"></i></a>
+    <!-- Back to top -->
+    <!-- javascript -->
+    <script src="~/Scripts/Lib/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/Lib/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Lib/jquery.easing.min.js"></script>
+    <script src="~/Scripts/Lib/scrollspy.min.js"></script>
+    <!-- SLIDER -->
+    <script src="~/Scripts/Lib/owl.carousel.min.js "></script>
+    <script src="~/Scripts/Lib/owl.init.js "></script>
+    <!-- Icons -->
+    <script src="~/Scripts/Lib/feather.min.js"></script>
+    <script src="https://unicons.iconscout.com/release/v2.1.9/script/monochrome/bundle.js"></script>
+    <!-- Main Js -->
+    <script src="~/Scripts/Lib/app.js"></script>
+    <script src="~/Scripts/Lib/jquery.validate.min.js"></script>
+    <script src="~/Scripts/Lib/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/initpage.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

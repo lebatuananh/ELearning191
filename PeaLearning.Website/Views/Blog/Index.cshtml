@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BlogDto>
+@{
+    var pagingInfo = (PeaLearning.Website.Models.Common.PaginationModel)ViewBag.PagingInfo;
+}
+
+
+<!-- Hero Start -->
+<section class="bg-half bg-green d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title text-white"> Tin tức </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                                <li class="breadcrumb-item active"><a href="/tin-tuc">Tin tức</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>  <!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section><!--end section-->
+<!-- Hero End -->
+<!-- Shape Start -->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!--Shape End-->
+<!-- Blog Start -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <!-- BLog Start -->
+            <div class="col-lg-8 col-md-6">
+                <div class="row">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="col-lg-6 col-md-12 mb-4 pb-2">
+                                <div class="card blog rounded border-0 shadow">
+                                    <div class="position-relative">
+                                        <img src="@item.AvatarUrl" class="card-img-top rounded-top" alt="@item.Name">
+                                        <div class="overlay rounded-top bg-dark"></div>
+                                    </div>
+                                    <div class="card-body content">
+                                        <h5><a href="@item.Link" class="card-title title text-dark">@item.Name</a></h5>
+                                        <div class="post-meta d-flex justify-content-between mt-3">
+                                            <a href="@item.Link" class="text-muted readmore">Xem thêm <i class="mdi mdi-chevron-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        }
+                    }
+
+                    <!-- PAGINATION START -->
+                    @if (pagingInfo != null)
+                    {
+                        <div class="col-12">
+                            @await Component.InvokeAsync("Paging", pagingInfo)
+                        </div><!--end col-->
+                    }
+                    <!-- PAGINATION END -->
+                </div><!--end row-->
+            </div><!--end col-->
+            <!-- BLog End -->
+            <!-- START SIDEBAR -->
+
+
+            @await Component.InvokeAsync("BlogRecent")
+           
+            <!-- END SIDEBAR -->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+<!-- Blog End -->

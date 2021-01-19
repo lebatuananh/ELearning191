@@ -1,0 +1,59 @@
+﻿@model IList<LessonInfoDto>
+
+@if (Model != null && Model.Any())
+{
+    <!-- Courses Start -->
+    <section class="section" id="courses">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <div class="section-title mb-4 pb-2">
+                        <h4 class="title mb-4">Bài học mới nhất</h4>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                        <div class="card courses-desc overflow-hidden rounded shadow border-0">
+                            <div class="position-relative d-block overflow-hidden">
+                                <img src="~/Images/course/1.jpg" class="img-fluid rounded-top mx-auto" alt="">
+                                <div class="overlay-work"></div>
+                                <a href="@item.Link" class="text-white h6 preview">Xem ngay <i class="mdi mdi-chevron-right"></i></a>
+                            </div>
+                            <div class="card-body">
+                                <h5><a href="@item.Link" class="title text-dark">@item.Title</a></h5>
+                                @*<div class="rating">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="list-inline-item"><i class="mdi mdi-star h5 mb-0 text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star h5 mb-0 text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star h5 mb-0 text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star h5 mb-0 text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star h5 mb-0 text-warning"></i></li>
+                                            <li class="list-inline-item">5 Star (3<i class="mdi mdi-account text-muted"></i>)</li>
+                                        </ul>
+                                    </div>*@
+                                <div class="fees d-flex justify-content-between">
+                                    <ul class="list-unstyled mb-0 numbers">
+                                        <li><i class="mdi mdi-school text-muted"></i> @item.LessonType</li>
+                                        @if (item.Duration > 0)
+                                        {
+                                            <li><i class="mdi mdi-book text-muted"></i> @item.Duration phút</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                }
+
+                <div class="col-12 mt-4 pt-2 text-center">
+                    <a href="/khoa-hoc" class="btn btn-primary">Khóa học <i class="mdi mdi-chevron-right"></i></a>
+                </div>
+            </div><!--end row-->
+        </div><!--end container-->
+    </section><!--end section-->
+    <!-- Courses End -->
+}

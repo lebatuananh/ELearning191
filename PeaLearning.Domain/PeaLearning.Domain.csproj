@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="AggregateModels\IntroduceAggregate\" />
+    <Folder Include="AggregateModels\ConsultationAggregate\" />
+    <Folder Include="AggregateModels\OrderAggragate\" />
+    <Folder Include="DomainEvents\" />
+    <Folder Include="AggregateModels\BannerAggregate\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PeaLearning.Common\PeaLearning.Common.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+</Project>

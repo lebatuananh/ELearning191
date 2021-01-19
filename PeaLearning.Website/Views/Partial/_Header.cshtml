@@ -1,0 +1,91 @@
+﻿@using PeaLearning.Website.Extensions;
+<header id="topnav" class="defaultscroll sticky">
+    <div class="container">
+        <!-- Logo container-->
+        <div>
+            <a class="logo" href="/">
+                <img src="~/Images/logo-pea.png" class="l-dark" height="70" alt="">
+                <img src="~/Images/logo-pea.png" class="l-light" height="70" alt="">
+            </a>
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="buy-button">
+                <a href="/profile">
+                    <div class="btn btn-primary login-btn-primary">@User.GetSpecificClaim(SystemConstants.UserClaim.FullName)</div>
+                    <div class="btn btn-light login-btn-light">@User.GetSpecificClaim(SystemConstants.UserClaim.FullName)</div>
+                </a>
+                <a href="/dang-xuat">
+                    <div class="btn btn-primary login-btn-primary">Đăng xuất</div>
+                    <div class="btn btn-light login-btn-light">Đăng xuất</div>
+                </a>
+            </div>
+
+        }
+        else
+        {
+            <div class="buy-button">
+                <a href="/dang-nhap">
+                    <div class="btn btn-primary login-btn-primary">Đăng nhập</div>
+                    <div class="btn btn-light login-btn-light">Đăng nhập</div>
+                </a>
+                <a href="/dang-ky">
+                    <div class="btn btn-primary login-btn-primary">Đăng ký</div>
+                    <div class="btn btn-light login-btn-light">Đăng ký</div>
+                </a>
+            </div>
+        }
+        <!--end login button-->
+        <!-- End Logo container-->
+        <div class="menu-extras">
+            <div class="menu-item">
+                <!-- Mobile menu toggle-->
+                <a class="navbar-toggle">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- End mobile menu toggle-->
+            </div>
+        </div>
+
+        <div id="navigation">
+            <!-- Navigation Menu-->
+            <ul class="navigation-menu nav-light">
+                <li><a href="/">Home</a></li>
+                <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                <li><a href="/tin-tuc">Tin tức</a></li>
+                <li><a href="/khoa-hoc">Khóa học</a></li>
+                @*<li><a href="/khao-sat">Khảo sát</a></li>*@
+                <li><a href="/lien-he">Liên hệ</a></li>
+            </ul><!--end navigation menu-->
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="buy-menu-btn d-none">
+                    <a href="/profile">
+                        <div class="btn btn-primary login-btn-primary">@User.GetSpecificClaim("FullName")</div>
+                    </a>
+                    <a href="/dang-xuat">
+                        <div class="btn btn-primary login-btn-primary">Đăng xuất</div>
+                    </a>
+                </div>
+
+            }
+            else
+            {
+                <div class="buy-menu-btn d-none">
+                    <a href="/dang-nhap">
+                        <div style="width:calc(50% - 10px);margin-right:10px;" class="btn btn-primary login-btn-primary">Đăng nhập</div>
+                    </a>
+                    <a href="/dang-ky">
+                        <div style="width: calc(50% - 10px);"  class="btn btn-primary login-btn-primary">Đăng ký</div>
+                    </a>
+                </div>
+            }
+
+            <!--end login button-->
+        </div><!--end navigation-->
+    </div><!--end container-->
+</header><!--end header-->

@@ -1,0 +1,126 @@
+﻿@model AnalyzeResponseDto
+<!-- Hero Start -->
+<section class="bg-half bg-dark d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title text-white">Kết quả bài test @Model.Lesson.Title </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                                <li class="breadcrumb-item " aria-current="page"><a href="/khoa-hoc">Khóa học</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@(Model.Lesson.LessonType == LessonType.Audit ? "Kiểm tra" : "Ôn luyện")</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>  <!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section><!--end section-->
+<section class="mt-100">
+    <div class="container response">
+        <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-analyze" role="tab" aria-controls="nav-analyze" aria-selected="true"><i class="far fa-chart-bar"></i> Phân tích</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-result" role="tab" aria-controls="nav-result" aria-selected="false"><i class="fas fa-list-ol"></i> Xem đáp án</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-analyze" role="tabpanel" aria-labelledby="nav-analyze-tab">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p class="text-muted">Chúc mừng bạn đã hoàn thành bài test <strong class="text-body">"@Model.Lesson.Title"</strong></p>
+                        <h5 class="card-title">Kết quả bài test :</h5>
+                        <ul class="list-unstyled feature-list text-muted">
+                            <li><i data-feather="arrow-right" class="fea icon-sm mr-2"></i>Thời gian nộp bài: <strong class="text-body">@Model.SubmittedDate.Value.AddHours(7).ToString("dd/MM/yyyyy HH:mm:ss")</strong></li>
+                            <li><i data-feather="arrow-right" class="fea icon-sm mr-2"></i>Số câu đúng: <strong class="text-body">@Model.NumOfCorrectAnswer / @Model.Lesson.Questions.Count()</strong></li>
+                            <li><i data-feather="arrow-right" class="fea icon-sm mr-2"></i>Số point đạt được: <strong class="text-body">@Model.TotalPoint points</strong></li>
+                            @{
+                                var minutes = Math.Floor((decimal)Model.CompletedDuration / 60);
+                                var seconds = Math.Floor((decimal)Model.CompletedDuration % 60);
+                            }
+                            <li><i data-feather="arrow-right" class="fea icon-sm mr-2"></i>Thời gian làm bài: <strong class="text-body">@minutes:@seconds</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-result" role="tabpanel" aria-labelledby="nav-result-tab">
+                <div class="row" id="loadQuestion">
+                    @{
+                        int i = 0;
+                        foreach (var item in Model.Lesson.Questions)
+                        {
+                            i++;
+                            <div class="col-lg-12 @(i > 1 ? "hide":"")" id="stt-@i">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <ul class="date text-center text-primary mr-3 mb-0 list-unstyled">
+                                                <li class="day font-weight-bold mb-2">@i</li>
+                                            </ul>
+                                            <div class="media-body content">
+                                                @if (!string.IsNullOrEmpty(item.ParentContent))
+                                                {
+                                                    @Html.Raw(item.ParentContent)
+                                                }
+                                                @if (!string.IsNullOrEmpty(item.ParentExample))
+                                                {
+                                                    <p style="font-style:italic;">Example: @Html.Raw(item.ParentExample)</p>
+                                                }
+                                                @if (!string.IsNullOrEmpty(item.PictureUrl))
+                                                {
+                                                    <div class="position-relative">
+                                                        <img src="@item.PictureUrl.GetUrl()" height="300" />
+                                                    </div>
+                                                }
+                                                @if (!string.IsNullOrEmpty(item.AudioUrl))
+                                                {
+                                                    <div class="position-relative mt-2">
+                                                        <audio controls>
+                                                            <source src="@item.AudioUrl.GetUrl()" type="audio/mpeg" />
+                                                        </audio>
+                                                    </div>
+                                                }
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body content answer" data-type="@((int)item.QuestionContent.QuestionType)">
+                                                            @Html.Raw(item.ConvertResponseContent())
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @if (i < Model.Lesson.Questions.Count)
+                                                {
+                                                    <a href="javascript:void(0)" data-stt="@i" onclick="question.nextQuestion(this)" style="float:right;" class="btn btn-sm btn-outline-primary mouse-down rightMost">Next</a>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-4 pt-2" style="margin-bottom:60px;">
+                        <ul class="pagination justify-content-center mb-0">
+                            @{ int j = 0;}
+                            @foreach (var items in Model.Lesson.Questions.Where(x => x.QuestionContent.QuestionType != PeaLearning.Common.Models.QuestionType.Section))
+                            {
+                                j++;
+                                <li class="@(j == 1 ? "page-item active": "page-item" )"><a onclick="question.chooseQuestion(this)" data-id="@j" class="page-link" href="javascript:void(0)">@j</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+    <script asp-append-version="true" src="~/Scripts/response.js"></script>
+}
